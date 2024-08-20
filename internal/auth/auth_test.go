@@ -15,6 +15,7 @@ func TestGetAPIKey(t *testing.T) {
 		"simple":         {input: http.Header{"Authorization": []string{"ApiKey abc123"}}, out1: "abc123", out2: nil},
 		"no header":      {input: http.Header{}, out1: "", out2: ErrNoAuthHeaderIncluded},
 		"invalid format": {input: http.Header{"Authorization": []string{"Bearer abc123"}}, out1: "", out2: ErrMalformedAuthHeader},
+		"test failure":   {input: http.Header{"Authorization": []string{"ApiKey xyz357"}}, out1: "abc123", out2: nil},
 	}
 
 	for name, tc := range tests {
